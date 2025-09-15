@@ -1,0 +1,44 @@
+define turnright:
+    turnleft
+    turnleft
+    turnleft
+
+do 2:
+    move
+turnleft
+move
+move
+do 3:
+    turnleft
+do 2:
+    move
+do 3:
+    turnleft
+move
+move
+turnleft
+do 2:
+    move
+turnleft
+do 5:
+    move
+turnleft
+do 2:
+    move
+turnleft
+do 2:
+    move
+do 3:
+    turnleft
+do 2:
+    move
+do 3:
+    turnleft
+do 2:
+    move
+turnleft
+do 2:
+    move
+turnleft
+do 5:
+    move
