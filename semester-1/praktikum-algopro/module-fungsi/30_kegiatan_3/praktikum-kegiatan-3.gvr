@@ -1,0 +1,65 @@
+define movepb:
+    move
+    putbeeper
+define turnright:
+    do 3:
+        turnleft
+movepb
+movepb
+move
+turnright
+movepb
+movepb
+move
+turnright
+movepb
+movepb
+move
+turnright
+movepb
+movepb
+turnleft
+turnleft
+move
+move
+move
+movepb
+movepb
+movepb
+turnleft
+movepb
+movepb
+turnleft
+movepb
+movepb
+turnleft
+turnleft
+move
+move
+turnleft
+movepb
+movepb
+turnleft
+movepb
+movepb
+turnleft
+turnleft
+move
+move
+move
+movepb
+turnright
+movepb
+movepb
+turnleft
+movepb
+movepb
+turnleft
+movepb
+movepb
+turnleft
+turnleft
+move
+move
+movepb
+movepb

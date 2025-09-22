@@ -1,0 +1,87 @@
+define turnright:
+    do 3:
+        turnleft
+define mpt:
+    move
+    putbeeper
+define turnleft2:
+    turnleft
+    turnleft
+mpt
+mpt
+move
+mpt
+mpt
+move 
+turnright
+mpt
+mpt
+move
+turnright
+mpt
+mpt
+move
+turnright
+mpt
+mpt
+turnleft2
+move
+move
+turnright
+mpt
+mpt
+move 
+turnright
+mpt
+mpt
+turnleft2
+move 
+move
+move
+mpt
+mpt
+mpt
+turnleft2
+move
+turnright
+mpt
+mpt
+mpt
+mpt
+mpt
+turnleft
+mpt
+turnleft2
+move 
+turnleft
+mpt
+turnright
+move
+move
+move
+mpt
+mpt
+move
+turnright
+mpt
+mpt
+mpt
+mpt
+mpt
+move
+turnright
+mpt
+mpt
+move 
+turnright
+mpt
+move 
+move
+mpt
+mpt
+turnleft2
+move
+move
+turnleft
+mpt
+mpt

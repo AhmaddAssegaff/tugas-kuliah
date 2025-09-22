@@ -1,0 +1,19 @@
+define turnright:
+    turnleft
+    turnleft
+    turnleft
+define move2btr:
+    move
+    move
+    putbeeper
+    turnright
+move 
+move
+move2btr
+move
+move2btr
+move2btr
+move
+putbeeper
+turnright
+move

@@ -1,0 +1,32 @@
+define inout:
+    move
+    move
+    turnleft
+    move
+    putbeeper
+    turnleft
+    turnleft
+    move
+    turnleft
+    move
+inout
+inout
+inout
+turnleft
+turnleft
+turnleft
+move
+turnleft
+turnleft
+turnleft
+move 
+turnleft
+move
+putbeeper
+turnleft
+turnleft
+move
+turnleft
+move
+inout
+inout
