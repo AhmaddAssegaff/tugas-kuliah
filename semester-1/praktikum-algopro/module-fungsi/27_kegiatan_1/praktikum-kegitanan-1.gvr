@@ -1,23 +1,19 @@
+define move3:
+    move
+    move
+    move
+define turnright:
+    turnleft
+    turnleft
+    turnleft
+move
+move3
+turnright
+move3
+turnright
 move
 move
+turnright
 move
-move
-turnleft
-turnleft
-turnleft
-move
-move
-move
-turnleft
-turnleft
-turnleft
-move
-move
-turnleft
-turnleft
-turnleft
-move
-turnleft
-turnleft
-turnleft
+turnright
 move
