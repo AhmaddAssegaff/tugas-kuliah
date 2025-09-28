@@ -1,0 +1,38 @@
+robot 2 4 E 0
+beepers 3 7 1
+beepers 5 7 1
+beepers 7 7 1
+
+beepers 3 6 1
+beepers 5 6 1
+beepers 7 6 1
+
+beepers 3 5 1
+beepers 5 5 1
+beepers 7 5 1
+
+wall 2 4 N
+wall 2 5 E
+wall 2 6 E
+wall 2 7 E
+wall 3 7 N
+wall 3 7 E
+wall 3 6 E
+wall 4 4 N
+wall 3 5 E
+wall 4 5 E
+wall 4 6 E
+wall 4 7 E
+wall 5 7 N
+wall 5 7 E
+wall 5 6 E
+wall 5 5 E
+wall 6 4 N
+wall 6 5 E
+wall 6 6 E
+wall 6 7 E
+wall 7 7 N
+wall 7 7 E
+wall 7 6 E
+wall 7 5 E
+wall 8 4 N

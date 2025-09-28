@@ -1,0 +1,16 @@
+define padamkan:
+    move
+    turnleft
+    do 3:
+        move
+        pickbeeper
+    turnleft
+    turnleft
+    do 3:
+        move
+    turnleft
+    move
+        
+padamkan
+padamkan
+padamkan

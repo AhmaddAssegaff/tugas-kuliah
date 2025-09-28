@@ -1,0 +1,16 @@
+define movep:
+    do 4:
+        move
+    putbeeper
+    do 3:
+        turnleft
+move
+move
+movep
+movep
+move
+movep
+movep
+turnleft 
+turnleft
+move
