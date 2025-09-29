@@ -4,10 +4,14 @@ define turnright:
 define trmtr:
     turnright
     move
+    if next_to_a_beeper:
+            pickbeeper
     turnright
 define tlmtl:
     turnleft
     move
+    if next_to_a_beeper:
+            pickbeeper
     turnleft
 define move6npb:
     do 6:
