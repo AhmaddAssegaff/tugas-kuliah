@@ -1,0 +1,20 @@
+define turnright:
+    do 3:
+        turnleft
+
+define tutupjendela:
+    while right_is_blocked:
+        move
+        if next_to_a_beeper:
+            pickbeeper
+            turnleft
+            turnoff
+        if right_is_clear:
+            putbeeper
+            move
+        if front_is_blocked:
+            turnleft
+        
+putbeeper
+turnright
+tutupjendela

@@ -1,0 +1,7 @@
+move
+do 3:
+    putbeeper
+move
+do 4:
+    putbeeper
+move

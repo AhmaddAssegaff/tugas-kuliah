@@ -1,0 +1,22 @@
+robot 3 3 E 1
+beepers 3 6 1 
+wall 3 2 N
+wall 4 2 N
+wall 5 2 N
+wall 5 3 E
+wall 5 4 E
+wall 6 4 N
+wall 7 4 N
+wall 7 4 E
+wall 8 3 N
+wall 8 4 E
+wall 8 5 E
+wall 8 6 E
+wall 8 7 E
+wall 8 7 N
+wall 7 7 N
+wall 6 7 N
+wall 5 7 E
+wall 5 6 N
+wall 4 6 N
+

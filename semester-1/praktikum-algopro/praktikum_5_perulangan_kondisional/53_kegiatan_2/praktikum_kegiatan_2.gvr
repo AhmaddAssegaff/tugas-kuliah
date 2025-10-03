@@ -1,0 +1,27 @@
+define goifrightisblock:
+    while right_is_blocked:
+        move
+define turnright:
+    do 3:
+        turnleft
+define majudenganif:
+    while right_is_blocked:
+        move
+        if front_is_blocked:
+            turnleft
+        if right_is_clear:
+            turnright
+    
+majudenganif
+move
+goifrightisblock
+while right_is_clear:
+    turnright
+    move
+    turnleft
+    turnleft
+majudenganif
+move
+goifrightisblock
+pickbeeper
+turnoff
