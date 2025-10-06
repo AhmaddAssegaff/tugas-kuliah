@@ -1,3 +1,5 @@
+do 9:
+    putbeeper
 move
 do 3:
     putbeeper
@@ -5,3 +7,11 @@ move
 do 4:
     putbeeper
 move
+turnleft
+turnleft
+while front_is_clear:
+    if next_to_a_beeper:
+        pickbeeper
+    else:
+        move
+turnoff
