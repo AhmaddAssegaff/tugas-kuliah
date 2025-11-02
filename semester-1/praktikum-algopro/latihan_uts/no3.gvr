@@ -1,0 +1,26 @@
+define langkah3:
+    do 3:
+        move
+define turnright:
+    do 3:
+        turnleft
+define ambil:
+    langkah3
+    turnleft
+    langkah3
+    turnleft
+    move
+    pickbeeper
+    turnleft
+    turnleft
+    move
+    turnright
+    move
+    move
+    turnleft
+do 3: 
+    ambil
+move
+do 3:
+    putbeeper
+turnoff

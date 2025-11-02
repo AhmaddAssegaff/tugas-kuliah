@@ -16,7 +16,7 @@
 #     for i in range(1, banyak_baris -1):
 #         print("*" * i)
 #     print()
-    
+
 # # segitiga sama sisi
 # for i in range(1, banyak_bintang + 1):
 #     for x in range(1, 1+ banyak_baris):
@@ -32,5 +32,3 @@ def fibonacci(n):
         result.append(a)
         a, b = b, a + b
     return result
-
-print(fibonacci(10))
