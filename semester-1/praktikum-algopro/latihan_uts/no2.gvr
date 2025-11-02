@@ -1,9 +1,9 @@
 define keliling:
     do 4:
-        if next_to_a_beeper:
+        while next_to_a_beeper:
             pickbeeper
         move
-        if next_to_a_beeper:
+        while next_to_a_beeper:
             pickbeeper
         move
         turnleft
@@ -14,7 +14,6 @@ do 3:
 keliling
 do 3:
     move
-keliling 
+keliling
 turnleft
 turnleft
-    
