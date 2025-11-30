@@ -13,9 +13,7 @@ server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((host, port))
 server.listen()
 
-running = True
-
-while running:
+while True:
     client, addr = server.accept()
     print(f"client datang : ${addr}")
 

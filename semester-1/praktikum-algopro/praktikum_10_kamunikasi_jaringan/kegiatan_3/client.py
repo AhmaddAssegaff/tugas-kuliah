@@ -1,7 +1,7 @@
 import socket
 
 host = "localhost"
-port = 5004
+port = 5006
 
 while True:
     pesan = input("Masukkan perintah (atau 'q' untuk quit): ")
@@ -13,6 +13,13 @@ while True:
 
     balasan = client.recv(1024).decode()
     print("Balasan server:", balasan)
+
+    if pesan == "hitung_persegi":
+        sisi = input("Isi sisi: ")
+        client.send(sisi.encode())
+
+        hasil = client.recv(1024).decode()
+        print("Hasil:", hasil)
 
     client.close()
 
