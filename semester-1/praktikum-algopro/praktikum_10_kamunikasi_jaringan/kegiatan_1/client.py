@@ -1,7 +1,7 @@
 import socket
 
 host = "localhost"
-port = 5003
+port = 5005
 
 while True:
     pesan = input("Masukkan perintah (atau 'q' untuk quit): ")

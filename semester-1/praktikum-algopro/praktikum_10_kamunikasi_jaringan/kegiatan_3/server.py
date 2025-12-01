@@ -1,7 +1,7 @@
 import socket 
 
 host = 'localhost'
-port = 5006
+port = 5001
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((host, port))
@@ -17,7 +17,6 @@ while True:
     if pesan_user == 'q':
         client.send(b"Server dihentikan.")
         client.close()
-        running = False
         break
 
     def persegi(params):

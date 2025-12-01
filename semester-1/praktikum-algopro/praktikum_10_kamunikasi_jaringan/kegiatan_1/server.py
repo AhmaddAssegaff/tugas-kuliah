@@ -1,7 +1,7 @@
 import socket 
 
 host = 'localhost'
-port = 5003
+port = 5005
 
 data = {
     'nama' : 'Ahmad',
@@ -23,10 +23,8 @@ while True:
     if pesan_user == 'q':
         client.send(b"Server dihentikan.")
         client.close()
-        running = False
         break
-
-    if pesan_user in data:
+    elif pesan_user in data:
         client.send(str(data[pesan_user]).encode())
         print(f"respones : {data[pesan_user]}")
     else:
