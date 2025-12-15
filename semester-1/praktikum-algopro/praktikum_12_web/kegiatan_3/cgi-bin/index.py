@@ -1,34 +1,35 @@
 #!/usr/bin/env python3
-import os
-import sys
-from urllib.parse import parse_qs
+import cgi
 
 print("Content-Type: text/html\n")
 
-data = ""
-if os.environ.get("REQUEST_METHOD") == "POST":
-    length = int(os.environ.get("CONTENT_LENGTH", 0))
-    data = sys.stdin.read(length)
-else:
-    data = os.environ.get("QUERY_STRING", "")
-
-params = parse_qs(data)
-L = params.get("L", [""])[0]
+form = cgi.FieldStorage()
+L = form.getfirst("L", "")
 
 hasil = ""
 if L.isdigit():
-    L = int(L)
-    hasil = f"<p>Luas Persegi: {L * L}</p>"
+    L_int = int(L)
+    hasil = f"<p>Luas Persegi: {L_int * L_int}</p>"
 
-print(f"""
-<!DOCTYPE html>
-<html>
+print(f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CGI Persegi</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
 <body>
-    <form method="post">
+    <h1>Nama Bangun Datar: Persegi</h1>
+    <p>Dimensi: 2D</p>
+    <p>Rumus Luas: L × L</p>
+
+    <form method="post" action="/cgi-bin/index.py">
+        <label>Masukkan L:</label>
         <input type="number" name="L" required>
-        <button>Hitung</button>
+        <button type="submit">Hitung</button>
     </form>
+
     {hasil}
 </body>
-</html>
-""")
+</html>""")

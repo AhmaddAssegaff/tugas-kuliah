@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import cgi
+
 print("Content-Type: text/html\n")
 
 print("""<!DOCTYPE html>
@@ -11,7 +13,10 @@ print("""<!DOCTYPE html>
 </head>
 <body>
     <h1>DATA DIRI</h1>
-    <p>Nama: Ahmad</p>
-    <p>NIM : L200250034</p>
+    <p>nama : Ahmad</p>
+    <p>Alamat: di jalan</p>
+    <p>tempat, tanggal-lahir: Surakarta, 12-06-2006</p>
+    <p>tempat wisata fav: di hatimu</p>
+    <p>motto: hiduplah</p>
 </body>
 </html>""")
