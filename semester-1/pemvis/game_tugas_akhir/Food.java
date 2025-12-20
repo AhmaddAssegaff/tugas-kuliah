@@ -6,9 +6,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public abstract class Food extends Actor {
-    protected int effect;     // +1, +3, -2
-    protected int size;       // ukuran grid
-    protected String image;   // nama file
+    protected int appleValue;
+    protected int size;
+    protected String image;
     
     /**
      * Constructor for objects of class Food
@@ -24,6 +24,6 @@ public abstract class Food extends Actor {
         setImage(img);
     }
     public int getEffect() {
-        return effect;
+        return appleValue;
     }
 }

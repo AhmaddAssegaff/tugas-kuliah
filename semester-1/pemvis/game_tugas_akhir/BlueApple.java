@@ -13,7 +13,7 @@ public class BlueApple extends Food {
      */
     @Override
     protected void setup() {
-        effect = -2;
+        appleValue = -1;
         size = MyWorld.GRID;
         image = "blue-apple.png";
     }
