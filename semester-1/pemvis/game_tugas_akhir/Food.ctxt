@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Food
+comment0.text=\n\ Write\ a\ description\ of\ class\ Food\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=void\ setup()
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Food\n
+comment2.params=
+comment2.target=Food()
+comment3.params=
+comment3.target=void\ prepareImage()
+comment4.params=
+comment4.target=int\ getEffect()
+numComments=5

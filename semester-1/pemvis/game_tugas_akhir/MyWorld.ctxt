@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=MyWorld
+comment0.text=\n\ Write\ a\ description\ of\ class\ MyWorld\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=MyWorld()
+comment2.params=
+comment2.target=int\ getLengthSnake()
+comment3.params=
+comment3.target=int\ getDynamicMaxFood()
+comment4.params=
+comment4.target=void\ started()
+comment5.params=x\ y
+comment5.target=boolean\ isCellBlocked(int,\ int)
+comment6.params=
+comment6.target=Food\ createRandomFood()
+comment7.params=
+comment7.target=void\ spawnFood()
+numComments=8
