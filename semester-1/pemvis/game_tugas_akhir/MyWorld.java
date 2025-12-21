@@ -12,16 +12,16 @@ public class MyWorld extends World {
     
     public static final int GRID = 25;
     
-    private static final int MIN_FOOD_EXISTS = 3;
+    private static final int MIN_FOOD_EXISTS = 2;
     private static final int MAX_FOOD = (X_SCREEN / GRID) * (Y_SCREEN / GRID);
     
-    private static final int DEFAULT_SNAKE_LEGHTH = 1;
-    
-    private static final int FOOD_GROWTH_FACTOR = 3;
+    private static final int FOOD_GROWTH_FACTOR = 2;
     private static final int RED_APPLE_PERCENT = 50;
     private static final int BLUE_APPLE_PERCENT = 10;
     
     Snake snake = new Snake();
+    TimerBoard timerBoard = new TimerBoard();
+    ScoreBoard scoreBoard = new ScoreBoard();
     
     public MyWorld() {    
         super((Y_SCREEN / GRID) * GRID, (X_SCREEN / GRID) * GRID, 1);
@@ -31,6 +31,12 @@ public class MyWorld extends World {
         setBackground(bg);
         
         addObject(snake, getWidth() / 2, getHeight() / 2);
+        addObject(timerBoard, 450, 25);
+        addObject(scoreBoard, 300, 25);
+    }
+    
+    public void act() {
+        maintainFood();
     }
     
     @Override
@@ -65,22 +71,29 @@ public class MyWorld extends World {
 
           if (!isCellBlocked(x, y)) {
               addObject(createRandomFood(), x, y);
-              return;
+              return; 
           }
       }
     }
 
     public void maintainFood() {
       int targetMaxFood = getDynamicMaxFood();
-
-      while (getObjects(Food.class).size() < targetMaxFood) {
+      int totalCells = (getWidth() / GRID) * (getHeight() / GRID);
+      int totalFood = getObjects(Food.class).size();
+      
+      if (totalFood < targetMaxFood) {
+          int occupiedCells = getLengthSnake() + totalFood;                                                                                                                                  
+          if (occupiedCells >= totalCells) {
+              return;
+          }
           spawnFoodOnce();
       }
     } 
 
     public boolean isCellBlocked(int x, int y) {
         if (!getObjectsAt(x, y, Snake.class).isEmpty()) return true;
-        
+        if (!getObjectsAt(x, y, SnakeBody.class).isEmpty()) return true; 
+        if (!getObjectsAt(x, y, SnakeHead.class).isEmpty()) return true;  
         if (!getObjectsAt(x, y, Food.class).isEmpty()) return true;
         
         return false;
@@ -90,7 +103,7 @@ public class MyWorld extends World {
         int spawnChance = Greenfoot.getRandomNumber(100);
 
         if (spawnChance < RED_APPLE_PERCENT) {
-            return new RedApple();
+             return new RedApple();
         }
         if (spawnChance < RED_APPLE_PERCENT + BLUE_APPLE_PERCENT) {
             return new BlueApple();
