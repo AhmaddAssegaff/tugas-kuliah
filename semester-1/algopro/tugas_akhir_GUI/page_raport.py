@@ -32,8 +32,6 @@ def create_raport_page(parent, width, height, on_back):
         reset_form()
 
     def hapus_data():
-        nonlocal selected_item_id
-
         if not selected_item_id:
             return
 
