@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from components.button import create_button
+from tkinter import messagebox
 
 def create_raport_page(parent, width, height, on_back):
     frame = tk.Frame(parent)
@@ -12,27 +13,79 @@ def create_raport_page(parent, width, height, on_back):
         nonlocal selected_item_id
 
         nama = entry_nama.get().strip()
-        jurusan = daftar_jurusan.get()
+        jurusan = daftar_jurusan.get().strip()
         alamat = entry_alamat.get().strip()
         sekolah = entry_sekolah.get().strip()
+        bindo = entry_bindo.get().strip()
+        bing = entry_bing.get().strip()
+        mtk = entry_mtk.get().strip()
 
-        if not nama or not jurusan:
+        if not nama:
+            messagebox.showerror("Error", "Nama Lengkap wajib diisi!")
             return
+
+        if not jurusan:
+            messagebox.showerror("Error", "Jurusan wajib dipilih!")
+            return
+
+        if not alamat:
+            messagebox.showerror("Error", "Alamat wajib diisi!")
+            return
+
+        if not sekolah:
+            messagebox.showerror("Error", "Asal Sekolah wajib diisi!")
+            return
+
+        if not bindo or not bing or not mtk:
+            messagebox.showerror("Error", "Semua nilai wajib diisi!")
+            return
+
+        try:
+            bindo = float(bindo)
+            bing = float(bing)
+            mtk = float(mtk)
+        except ValueError:
+            messagebox.showerror("Error", "Nilai harus berupa angka!")
+            return
+
+        for nilai, nama_mapel in [
+            (bindo, "Bahasa Indonesia"),
+            (bing, "Bahasa Inggris"),
+            (mtk, "Matematika")
+        ]:
+            if nilai < 0 or nilai > 100:
+                messagebox.showerror(
+                    "Error",
+                    f"Nilai {nama_mapel} harus antara 0 - 100!"
+                )
+                return
 
         if selected_item_id:
             no = tabel.item(selected_item_id)["values"][0]
             tabel.item(
                 selected_item_id,
-                values=(no, nama, jurusan, alamat, sekolah)
+                values=(no, nama, jurusan, alamat, sekolah, bindo, bing, mtk)
             )
         else:
             no = len(tabel.get_children()) + 1
-            tabel.insert("", "end", values=(no, nama, jurusan, alamat, sekolah))
+            tabel.insert(
+                "",
+                "end",
+                values=(no, nama, jurusan, alamat, sekolah, bindo, bing, mtk)
+            )
 
+        messagebox.showinfo("Sukses", "Data berhasil disimpan!")
         reset_form()
 
+
     def hapus_data():
+        nonlocal selected_item_id
+
         if not selected_item_id:
+            messagebox.showwarning("Peringatan", "Pilih data yang ingin dihapus!")
+            return
+
+        if not messagebox.askyesno("Konfirmasi", "Yakin ingin menghapus data ini?"):
             return
 
         tabel.delete(selected_item_id)
@@ -51,26 +104,30 @@ def create_raport_page(parent, width, height, on_back):
         selected_item_id = selected[0]
         data = tabel.item(selected_item_id, "values")
 
-        entry_nama.delete(0, tk.END)
-        daftar_jurusan.set("")
-        entry_alamat.delete(0, tk.END)
-        entry_sekolah.delete(0, tk.END)
+        reset_form(clear_selection=False)
 
         entry_nama.insert(0, data[1])
         daftar_jurusan.set(data[2])
         entry_alamat.insert(0, data[3])
         entry_sekolah.insert(0, data[4])
+        entry_bindo.insert(0, data[5])
+        entry_bing.insert(0, data[6])
+        entry_mtk.insert(0, data[7])
 
-    def reset_form():
+    def reset_form(clear_selection=True):
         nonlocal selected_item_id
 
         entry_nama.delete(0, tk.END)
         daftar_jurusan.set("")
         entry_alamat.delete(0, tk.END)
         entry_sekolah.delete(0, tk.END)
+        entry_bindo.delete(0, tk.END)
+        entry_bing.delete(0, tk.END)
+        entry_mtk.delete(0, tk.END)
 
-        selected_item_id = None
-        tabel.selection_remove(tabel.selection())
+        if clear_selection:
+            selected_item_id = None
+            tabel.selection_remove(tabel.selection())
 
     frame_input = tk.LabelFrame(
         frame,
@@ -80,11 +137,18 @@ def create_raport_page(parent, width, height, on_back):
     )
     frame_input.pack(fill="x", padx=20, pady=15)
 
-    tk.Label(frame_input, text="Nama Lengkap").grid(row=0, column=0, sticky="w")
-    entry_nama = tk.Entry(frame_input, width=40)
-    entry_nama.grid(row=0, column=1, padx=8, pady=4)
+    def label(text, row):
+        tk.Label(frame_input, text=text).grid(row=row, column=0, sticky="w")
 
-    tk.Label(frame_input, text="Jurusan").grid(row=1, column=0, sticky="w")
+    def entry(row):
+        e = tk.Entry(frame_input, width=40)
+        e.grid(row=row, column=1, padx=8, pady=4)
+        return e
+
+    label("Nama Lengkap", 0)
+    entry_nama = entry(0)
+
+    label("Jurusan", 1)
     daftar_jurusan = ttk.Combobox(
         frame_input,
         width=38,
@@ -101,16 +165,31 @@ def create_raport_page(parent, width, height, on_back):
     )
     daftar_jurusan.grid(row=1, column=1, padx=8, pady=4)
 
-    tk.Label(frame_input, text="Alamat").grid(row=2, column=0, sticky="w")
-    entry_alamat = tk.Entry(frame_input, width=40)
-    entry_alamat.grid(row=2, column=1, padx=8, pady=4)
+    label("Alamat", 2)
+    entry_alamat = entry(2)
 
-    tk.Label(frame_input, text="Asal Sekolah").grid(row=3, column=0, sticky="w")
-    entry_sekolah = tk.Entry(frame_input, width=40)
-    entry_sekolah.grid(row=3, column=1, padx=8, pady=4)
+    label("Asal Sekolah", 3)
+    entry_sekolah = entry(3)
+
+    label("Nilai Bahasa Indonesia", 4)
+    entry_bindo = entry(4)
+
+    label("Nilai Bahasa Inggris", 5)
+    entry_bing = entry(5)
+
+    label("Nilai Matematika", 6)
+    entry_mtk = entry(6)
 
     frame_action = tk.Frame(frame_input)
-    frame_action.grid(row=4, column=0, columnspan=2, pady=15)
+    frame_action.grid(row=7, column=0, columnspan=2, pady=15)
+
+    create_button(
+        frame_action,
+        "Reset",
+        command=reset_form,
+        width=18,
+        bg="#F59E0B"
+    ).pack(side="left", padx=5)
 
     create_button(frame_action, "Simpan", command=simpan_data, width=18).pack(side="left", padx=5)
     create_button(frame_action, "Hapus", command=hapus_data, width=18, bg="#EF4444").pack(side="left", padx=5)
@@ -129,13 +208,25 @@ def create_raport_page(parent, width, height, on_back):
 
     tabel = ttk.Treeview(
         frame_tabel,
-        columns=("No", "Nama", "Jurusan", "Alamat", "Asal Sekolah"),
+        columns=(
+            "No",
+            "Nama",
+            "Jurusan",
+            "Alamat",
+            "Asal Sekolah",
+            "B. Indo",
+            "B. Inggris",
+            "MTK"
+        ),
         show="headings"
     )
 
-    for col in ("No", "Nama", "Jurusan", "Alamat", "Asal Sekolah"):
+    for col in (
+        "No", "Nama", "Jurusan", "Alamat",
+        "Asal Sekolah", "B. Indo", "B. Inggris", "MTK"
+    ):
         tabel.heading(col, text=col)
-        tabel.column(col, anchor="center")
+        tabel.column(col, anchor="center", width=110)
 
     tabel.pack(fill="both", expand=True)
     tabel.bind("<<TreeviewSelect>>", pilih_data)
