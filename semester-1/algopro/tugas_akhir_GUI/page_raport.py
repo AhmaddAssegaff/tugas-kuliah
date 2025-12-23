@@ -6,62 +6,73 @@ def create_raport_page(parent, width, height, on_back):
     frame = tk.Frame(parent)
     frame.place(x=0, y=0, width=width, height=height)
 
-    selected_item_id = {"id": None}
-
-    def reset_form():
-        entry_nama.delete(0, tk.END)
-        daftar_jurusan.set("")
-        entry_alamat.delete(0, tk.END)
-        entry_sekolah.delete(0, tk.END)
-        selected_item_id["id"] = None
+    selected_item_id = None
 
     def simpan_data():
-        nama = entry_nama.get()
+        nonlocal selected_item_id
+
+        nama = entry_nama.get().strip()
         jurusan = daftar_jurusan.get()
-        alamat = entry_alamat.get()
-        sekolah = entry_sekolah.get()
+        alamat = entry_alamat.get().strip()
+        sekolah = entry_sekolah.get().strip()
 
         if not nama or not jurusan:
             return
 
-        if selected_item_id["id"]:
-            no = tabel.item(selected_item_id["id"])["values"][0]
+        if selected_item_id:
+            no = tabel.item(selected_item_id)["values"][0]
             tabel.item(
-                selected_item_id["id"],
+                selected_item_id,
                 values=(no, nama, jurusan, alamat, sekolah)
             )
         else:
             no = len(tabel.get_children()) + 1
-            tabel.insert(
-                "",
-                "end",
-                values=(no, nama, jurusan, alamat, sekolah)
-            )
+            tabel.insert("", "end", values=(no, nama, jurusan, alamat, sekolah))
 
         reset_form()
 
-    def pilih_data(event):
-        selected_item_id["id"] = tabel.focus()
-        if not selected_item_id["id"]:
+    def hapus_data():
+        nonlocal selected_item_id
+
+        if not selected_item_id:
             return
 
-        data = tabel.item(selected_item_id["id"], "values")
+        tabel.delete(selected_item_id)
         reset_form()
+
+        for i, item in enumerate(tabel.get_children(), start=1):
+            tabel.set(item, "No", i)
+
+    def pilih_data(event):
+        nonlocal selected_item_id
+
+        selected = tabel.selection()
+        if not selected:
+            return
+
+        selected_item_id = selected[0]
+        data = tabel.item(selected_item_id, "values")
+
+        entry_nama.delete(0, tk.END)
+        daftar_jurusan.set("")
+        entry_alamat.delete(0, tk.END)
+        entry_sekolah.delete(0, tk.END)
 
         entry_nama.insert(0, data[1])
         daftar_jurusan.set(data[2])
         entry_alamat.insert(0, data[3])
         entry_sekolah.insert(0, data[4])
 
-    def hapus_data():
-        if not selected_item_id["id"]:
-            return
+    def reset_form():
+        nonlocal selected_item_id
 
-        tabel.delete(selected_item_id["id"])
-        reset_form()
+        entry_nama.delete(0, tk.END)
+        daftar_jurusan.set("")
+        entry_alamat.delete(0, tk.END)
+        entry_sekolah.delete(0, tk.END)
 
-        for i, item in enumerate(tabel.get_children(), start=1):
-            tabel.set(item, "No", i)
+        selected_item_id = None
+        tabel.selection_remove(tabel.selection())
 
     frame_input = tk.LabelFrame(
         frame,
@@ -76,15 +87,19 @@ def create_raport_page(parent, width, height, on_back):
     entry_nama.grid(row=0, column=1, padx=8, pady=4)
 
     tk.Label(frame_input, text="Jurusan").grid(row=1, column=0, sticky="w")
-    daftar_jurusan = ttk.Combobox(frame_input, width=38, state="readonly")
-    daftar_jurusan["values"] = (
-        "Teknik Informatika",
-        "Sistem Informasi",
-        "Teknik Elektro",
-        "Artificial Intelligence",
-        "Desain Grafis",
-        "Aktuaria",
-        "Bisnis Digital"
+    daftar_jurusan = ttk.Combobox(
+        frame_input,
+        width=38,
+        state="readonly",
+        values=(
+            "Teknik Informatika",
+            "Sistem Informasi",
+            "Teknik Elektro",
+            "Artificial Intelligence",
+            "Desain Grafis",
+            "Aktuaria",
+            "Bisnis Digital"
+        )
     )
     daftar_jurusan.grid(row=1, column=1, padx=8, pady=4)
 
@@ -99,21 +114,8 @@ def create_raport_page(parent, width, height, on_back):
     frame_action = tk.Frame(frame_input)
     frame_action.grid(row=4, column=0, columnspan=2, pady=15)
 
-    create_button(
-        frame_action,
-        "Simpan",
-        command=simpan_data,
-        width=18
-    ).pack(side="left", padx=5)
-
-    create_button(
-        frame_action,
-        "Hapus",
-        command=hapus_data,
-        width=18,
-        bg="#EF4444"
-    ).pack(side="left", padx=5)
-
+    create_button(frame_action, "Simpan", command=simpan_data, width=18).pack(side="left", padx=5)
+    create_button(frame_action, "Hapus", command=hapus_data, width=18, bg="#EF4444").pack(side="left", padx=5)
     create_button(
         frame_action,
         "Kembali",
