@@ -11,17 +11,12 @@ public class ScoreBoard extends Board
     /**
      * Act - do whatever the ScoreBoard wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() {
-        MyWorld world = (MyWorld) getWorld();
-        updatedSore(world.getLengthSnake() - 1);
+     */        
+     public ScoreBoard() {
+        drawBoard("Score: 0");
     }
-    
-    public ScoreBoard() {
-        drawBorad("Score : 0");
-    }
-    
-    private void updatedSore(int score) {
-        drawBorad("Score: " + score);
+
+    public void setScore(int score) {
+        drawBoard("Score: " + score);
     }
 }

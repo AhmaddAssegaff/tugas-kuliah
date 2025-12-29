@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World {
     private static final int X_SCREEN = 600;
     private static final int Y_SCREEN = 900;
+    private int score = 0;
     
     public static final int GRID = 25;
     
@@ -18,6 +19,8 @@ public class MyWorld extends World {
     private static final int FOOD_GROWTH_FACTOR = 2;
     private static final int RED_APPLE_PERCENT = 50;
     private static final int BLUE_APPLE_PERCENT = 10;
+    
+    private boolean isGameOver = false;
     
     Snake snake = new Snake();
     TimerBoard timerBoard = new TimerBoard();
@@ -36,7 +39,20 @@ public class MyWorld extends World {
     }
     
     public void act() {
+        if (isGameOver) return;
+
         maintainFood();
+    }
+    
+    public void addScore(int amount) {
+        score += amount;
+        if (score < 0) score = 0;
+
+        scoreBoard.setScore(score);
+    }
+
+    public int getScore() {
+        return score;
     }
     
     @Override
@@ -109,5 +125,21 @@ public class MyWorld extends World {
             return new BlueApple();
         }
         return new GreenApple();
+    }
+    
+    public boolean isGameOver() {
+        return isGameOver;
+    }
+    
+    public void gameOver() {
+        if (isGameOver) return;
+        isGameOver = true;
+    
+        showGameOverBoard();
+    }
+    
+    private void showGameOverBoard() {
+        gameOverBoard board = new gameOverBoard();
+        addObject(board, getWidth() / 2, getHeight() / 2);
     }
 }

@@ -2,10 +2,8 @@
 comment0.target=ScoreBoard
 comment0.text=\n\ Write\ a\ description\ of\ class\ ScoreBoard\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=
-comment1.target=void\ act()
+comment1.target=ScoreBoard()
 comment1.text=\n\ Act\ -\ do\ whatever\ the\ ScoreBoard\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
-comment2.params=
-comment2.target=ScoreBoard()
-comment3.params=score
-comment3.target=void\ updatedSore(int)
-numComments=4
+comment2.params=score
+comment2.target=void\ setScore(int)
+numComments=3

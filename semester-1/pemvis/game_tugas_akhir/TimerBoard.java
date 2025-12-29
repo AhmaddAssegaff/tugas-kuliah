@@ -16,14 +16,17 @@ public class TimerBoard extends Board
     private int counterTime = 0;
     
     public TimerBoard() {
-        drawBorad("Time: 0");
+        drawBoard("Time: 0");
     }
     
     public void act() {
+        MyWorld world = (MyWorld) getWorld();
+        if (world.isGameOver()) return;
+        
         counterTime++;
         if (counterTime % 60 == 0) {
             time++;
-            drawBorad("Time: " + time + " s");
+            drawBoard("Time: " + time + " s");
         }   
     }
     

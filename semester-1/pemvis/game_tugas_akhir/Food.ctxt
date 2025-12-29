@@ -9,5 +9,5 @@ comment2.target=Food()
 comment3.params=
 comment3.target=void\ prepareImage()
 comment4.params=
-comment4.target=int\ getEffect()
+comment4.target=int\ getAppleValue()
 numComments=5

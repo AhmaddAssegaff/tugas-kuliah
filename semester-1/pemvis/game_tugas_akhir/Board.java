@@ -15,7 +15,7 @@ public class Board extends Actor
     protected int fontSize = 28;
     protected Color textColor = Color.WHITE;
     
-   protected void drawBorad(String text) {
+   protected void drawBoard(String text) {
         GreenfootImage img = new GreenfootImage(
             text,
             fontSize,
