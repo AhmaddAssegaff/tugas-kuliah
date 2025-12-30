@@ -115,6 +115,7 @@ public class Snake extends Actor {
         
         world.addScore(appleValue);
         world.maintainFood();
+        world.checkWinCondition();
     }
 
     private void growBody(int count) {

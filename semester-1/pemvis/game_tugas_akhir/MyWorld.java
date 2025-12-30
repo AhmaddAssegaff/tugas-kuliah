@@ -21,6 +21,7 @@ public class MyWorld extends World {
     private static final int BLUE_APPLE_PERCENT = 10;
     
     private boolean isGameOver = false;
+    private boolean isGameWin = false;
     
     Snake snake = new Snake();
     TimerBoard timerBoard = new TimerBoard();
@@ -127,6 +128,38 @@ public class MyWorld extends World {
         return new GreenApple();
     }
     
+    public boolean isGameWin(){
+        return isGameWin;
+    }
+    
+    public void gameWin() {
+        if(isGameWin) return;
+        isGameWin = true;
+        
+        showGameWinBoard();
+    }
+    
+    private void showGameWinBoard() {
+        GameWinBoard board = new GameWinBoard();
+        addObject(board, getWidth() / 2, getHeight() / 2);
+    }
+    
+    public int getTotalCells() {
+        return (getWidth() / GRID) * (getHeight() / GRID);
+    }
+
+    public boolean isSnakeFull() {
+        return getLengthSnake() >= getTotalCells();
+    }
+    
+    public void checkWinCondition() {
+        if (isGameWin || isGameOver) return;
+    
+        if (isSnakeFull()) {
+            gameWin();
+        }
+    }
+    
     public boolean isGameOver() {
         return isGameOver;
     }
@@ -139,7 +172,7 @@ public class MyWorld extends World {
     }
     
     private void showGameOverBoard() {
-        gameOverBoard board = new gameOverBoard();
+        GameOverBoard board = new GameOverBoard();
         addObject(board, getWidth() / 2, getHeight() / 2);
     }
 }
