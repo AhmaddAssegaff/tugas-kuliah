@@ -6,14 +6,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class SnakeBody extends Snake
-{
+public class SnakeBody extends Actor {
     /**
      * Act - do whatever the SnakeBody wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public void act()
-    {
-        // Add your action code here.
+    public SnakeBody() {
+        GreenfootImage img = new GreenfootImage(MyWorld.GRID, MyWorld.GRID);
+        img.setColor(Color.GREEN);
+        img.fill();
+        setImage(img);
     }
 }

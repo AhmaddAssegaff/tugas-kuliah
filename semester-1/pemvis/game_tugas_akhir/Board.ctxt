@@ -3,4 +3,6 @@ comment0.target=Board
 comment0.text=\n\ Write\ a\ description\ of\ class\ Board\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=text
 comment1.target=void\ drawBoard(java.lang.String)
-numComments=2
+comment2.params=label\ value
+comment2.target=void\ updateBoardText(java.lang.String,\ int)
+numComments=3

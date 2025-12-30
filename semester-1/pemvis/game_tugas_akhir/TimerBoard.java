@@ -6,30 +6,25 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class TimerBoard extends Board
-{
-    /**
-     * Act - do whatever the TimerBoard wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+public class TimerBoard extends Board {
     private int time = 0;
-    private int counterTime = 0;
-    
+    private int frameCounter = 0;
+
     public TimerBoard() {
-        drawBoard("Time: 0");
+        updateBoardText("Time", 0);
     }
-    
+
     public void act() {
         MyWorld world = (MyWorld) getWorld();
-        if (world.isGameOver()) return;
-        
-        counterTime++;
-        if (counterTime % 60 == 0) {
+        if (world.isGameOver() || world.isGameWin()) return;
+
+        frameCounter++;
+        if (frameCounter % 60 == 0) {
             time++;
-            drawBoard("Time: " + time + " s");
-        }   
+            updateBoardText("Time", time);
+        }
     }
-    
+
     public int getTime() {
         return time;
     }

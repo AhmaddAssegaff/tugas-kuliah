@@ -12,11 +12,11 @@ public class ScoreBoard extends Board
      * Act - do whatever the ScoreBoard wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */        
-     public ScoreBoard() {
-        drawBoard("Score: 0");
+    public ScoreBoard() {
+        updateBoardText("Score", 0);
     }
 
     public void setScore(int score) {
-        drawBoard("Score: " + score);
+        updateBoardText("Score", score);
     }
 }

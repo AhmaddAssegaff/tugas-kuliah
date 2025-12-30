@@ -17,7 +17,4 @@ public class GreenApple extends Food {
         size = MyWorld.GRID;
         image = "green-apple.png";
     }
-    public void act() {
-        // Add your action code here.
-    }
 }
