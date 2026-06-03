@@ -46,8 +46,8 @@ def form_update_courier():
         print(f"\n[Failed] Error: Courier ID {courier_id} not found!")
         return
 
-    new_name = input("New Name         : ").strip()
-    new_vehicle = input("New vehicle   : ").strip()
+    new_name = input("New Name: ").strip()
+    new_vehicle = input("New vehicle: ").strip()
 
     if update_courier(courier_id, new_name, new_vehicle):
         print(f"\n[Success] Courier ID {courier_id} successfully updated!")

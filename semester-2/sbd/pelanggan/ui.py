@@ -54,9 +54,9 @@ def display_customer_order_details():
 
 def form_add_customer():
     print("\n=== REGISTER NEW CUSTOMER ===")
-    name = input("Name         : ").strip()
-    address = input("Address      : ").strip()
-    phone = input("Phone Number : ").strip()
+    name = input("Name: ").strip()
+    address = input("Address: ").strip()
+    phone = input("Phone Number: ").strip()
 
     if not name or not address or not phone:
         print("\n[Failed] All fields are required!")
@@ -81,9 +81,9 @@ def form_update_customer():
         return
 
     print("\n--- Enter New Data ---")
-    new_name = input("New Name         : ").strip()
-    new_address = input("New Address      : ").strip()
-    new_phone = input("New Phone Number : ").strip()
+    new_name = input("New Name: ").strip()
+    new_address = input("New Address: ").strip()
+    new_phone = input("New Phone Number: ").strip()
 
     if not new_name or not new_address or not new_phone:
         print("\n[Failed] All fields are required for update!")
