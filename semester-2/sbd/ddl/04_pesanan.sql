@@ -3,7 +3,7 @@ CREATE TABLE pesanan (
     id_pelanggan INT NOT NULL,
     status_pesanan BOOLEAN NOT NULL DEFAULT FALSE,
     pesanan_dibuat DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    metode_pembayaran VARCHAR(50) NOT NULL,
+    metode_pembayaran ENUM("CASH", "QRIS", "TRANSFER") NOT NULL,
     total_harga BIGINT NOT NULL,
 
     CONSTRAINT fk_pesanan_pelanggan 
