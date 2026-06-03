@@ -3,7 +3,7 @@ from db import db, get_cursor
 
 def fetch_courier_by_id(courier_id):
     cursor = get_cursor()
-    query = "SELECT id FROM kurir WHERE id = %s"
+    query = "SELECT id, nama, status_ketersediaan, kendaraan FROM kurir WHERE id = %s"
     cursor.execute(query, (courier_id,))
     result = cursor.fetchone()
     cursor.close()
