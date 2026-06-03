@@ -36,14 +36,30 @@ def ambil_pesanan_pelanggan(id_pelanggan):
         pm.metode_pembayaran,
         pm.total_harga,
 
+        pg.estimasi_pengiriman,
+
+        k.nama AS nama_kurir,
+        k.kendaraan,
+
         u.rating,
         u.komentar
+
     FROM pelanggan p
+
     JOIN pemesanan pm
         ON p.id = pm.id_pelanggan
+
+    LEFT JOIN pengiriman pg
+        ON pm.id_pengiriman = pg.id
+
+    LEFT JOIN kurir k
+        ON pg.id_kurir = k.id
+
     LEFT JOIN ulasan u
         ON pm.id = u.id_pesanan
+
     WHERE p.id = %s
+
     ORDER BY pm.pesanan_dibuat DESC
     """
 
