@@ -49,7 +49,7 @@ def tampilkan_detail_pelanggan():
                 "Tanggal",
                 "Pembayaran",
                 "Total",
-                "Rateing",
+                "Rating",
                 "Komentar",
             ],
             tablefmt="grid",
