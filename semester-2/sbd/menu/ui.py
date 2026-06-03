@@ -44,7 +44,7 @@ def form_update_menu():
     price = input("Menu Price: ").strip()
     stock = input("Menu Stock: ").strip()
 
-    if update_menu(name, price, stock):
+    if update_menu(menu_id, name, price, stock):
         print(f"\n[Success] Menu Makanan ID {menu_id} successfully updated!")
     else:
         print(f"\n[Failed] Menu Makanan ID {menu_id} could not be updated.")

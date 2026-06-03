@@ -138,7 +138,7 @@ def main_menu():
         elif choice == "2":
             courier_menu()
         elif choice == "3":
-            courier_menu()
+            food_menu()
         elif choice == "0":
             clear_screen()
             close_connection()

@@ -1,20 +1,18 @@
 from db import db, get_cursor
 
 
-def fetch_menu_by_id(courier_id):
+def fetch_menu_by_id(menu_id):
     cursor = get_cursor()
     query = "SELECT id, nama, harga, stock FROM menu WHERE id = %s"
-    cursor.execute(query, (courier_id,))
+    cursor.execute(query, (menu_id,))
     result = cursor.fetchone()
     cursor.close()
-    return result is not None
+    return result
 
 
 def fetch_all_menus():
     cursor = get_cursor()
-    query = """
-    SELECT id, nama, harga, stock  FROM menu
-    """
+    query = "SELECT id, nama, harga, stock FROM menu"
     cursor.execute(query)
     result = cursor.fetchall()
     cursor.close()
@@ -24,7 +22,6 @@ def fetch_all_menus():
 def insert_menu(name, price, stock):
     cursor = get_cursor()
     query = "INSERT INTO menu (nama, harga, stock) VALUES (%s, %s, %s)"
-
     try:
         cursor.execute(query, (name, price, stock))
         db.commit()
@@ -37,7 +34,7 @@ def insert_menu(name, price, stock):
         cursor.close()
 
 
-def update_menu(name, price, stock):
+def update_menu(menu_id, name, price, stock):
     cursor = get_cursor()
     query = """
     UPDATE menu
@@ -45,7 +42,7 @@ def update_menu(name, price, stock):
     WHERE id = %s
     """
     try:
-        cursor.execute(query, (name, price, stock))
+        cursor.execute(query, (name, price, stock, menu_id))
         db.commit()
         return True
     except Exception as error:
