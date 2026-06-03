@@ -1,6 +1,27 @@
 from db import db, get_cursor
 
 
+def decrease_menu_stock(id_menu, kuantitas):
+    cursor = get_cursor()
+    try:
+        query = """
+            UPDATE menu 
+            SET stock = stock - %s 
+            WHERE id = %s AND stock >= %s
+        """
+        cursor.execute(query, (kuantitas, id_menu, kuantitas))
+    except Exception as error:
+        print(f"\n[Database Error]: Gagal mengurangi stock. {error}")
+        return None
+    finally:
+        cursor.close()
+
+    if cursor.rowcount == 0:
+        raise Exception(
+            f"Stok untuk Menu ID {id_menu} tidak mencukupi atau menu tidak ditemukan!"
+        )
+
+
 def fetch_menu_by_id(menu_id):
     cursor = get_cursor()
     try:

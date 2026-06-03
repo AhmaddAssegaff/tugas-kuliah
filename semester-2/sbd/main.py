@@ -9,6 +9,7 @@ from pelanggan.ui import (
     form_add_customer,
     form_update_customer,
 )
+from pesanan.ui import form_create_order
 
 
 def clear_screen():
@@ -120,6 +121,28 @@ def food_menu():
             pause()
 
 
+def order_menu():
+    while True:
+        clear_screen()
+        print("==============================")
+        print("      ORDER MANAGEMENT        ")
+        print("==============================")
+        print("1. Create New Order & Details")
+        print("0. Back to Main Menu")
+
+        choice = input("\nSelect action: ").strip()
+
+        if choice == "1":
+            clear_screen()
+            form_create_order()
+            pause()
+        elif choice == "0":
+            break
+        else:
+            print("\nAction not available.")
+            pause()
+
+
 def main_menu():
     while True:
         clear_screen()
@@ -129,6 +152,7 @@ def main_menu():
         print("1. Customer Management")
         print("2. Courier Management")
         print("3. Food Menu Management")
+        print("4. Order Management")
         print("0. Exit")
 
         choice = input("\nSelect menu: ").strip()
@@ -139,6 +163,8 @@ def main_menu():
             courier_menu()
         elif choice == "3":
             food_menu()
+        elif choice == "4":
+            order_menu()
         elif choice == "0":
             clear_screen()
             close_connection()
