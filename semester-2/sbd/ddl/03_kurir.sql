@@ -1,0 +1,6 @@
+CREATE TABLE kurir (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100) NOT NULL,
+    status_ketersediaan BOOLEAN NOT NULL DEFAULT TRUE,
+    kendaraan VARCHAR(50) NOT NULL,
+);
