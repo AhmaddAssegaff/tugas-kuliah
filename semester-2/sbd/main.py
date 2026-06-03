@@ -9,7 +9,7 @@ from pelanggan.ui import (
     form_add_customer,
     form_update_customer,
 )
-from pesanan.ui import form_create_order
+from pesanan.ui import form_create_order, form_delete_order
 
 
 def clear_screen():
@@ -128,6 +128,7 @@ def order_menu():
         print("      ORDER MANAGEMENT        ")
         print("==============================")
         print("1. Create New Order & Details")
+        print("2. Delete Order user")
         print("0. Back to Main Menu")
 
         choice = input("\nSelect action: ").strip()
@@ -135,6 +136,10 @@ def order_menu():
         if choice == "1":
             clear_screen()
             form_create_order()
+            pause()
+        if choice == "2":
+            clear_screen()
+            form_delete_order()
             pause()
         elif choice == "0":
             break

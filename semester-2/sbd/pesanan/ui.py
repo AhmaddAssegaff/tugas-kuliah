@@ -1,6 +1,7 @@
 from menu.ui import display_menus
 from pelanggan.ui import display_customers
-from pesanan.query import insert_customer_order
+from pesanan.query import delete_order_by_id, fetch_all_orders, insert_customer_order
+from tabulate import tabulate
 
 
 def form_create_order():
@@ -74,3 +75,59 @@ def form_create_order():
             print(f"\n[Sukses] Pesanan berhasil disimpan dengan ID Pesanan: {id_nota}")
     else:
         print("\n[Batal] Transaksi dibatalkan oleh pengguna.")
+
+
+def display_all_orders():
+    """Fungsi pembantu untuk mencetak tabel semua pesanan yang ada"""
+    orders = fetch_all_orders()
+    if not orders:
+        print("\n[Info] Tidak ada data pesanan saat ini.")
+        return False
+
+    print("\n=== DAFTAR SEMUA PESANAN ===")
+    headers = [
+        "ID Pesanan",
+        "ID Pelanggan",
+        "Status",
+        "Tanggal Dibuat",
+        "Pembayaran",
+        "Total Harga (Rp)",
+    ]
+    print(tabulate(orders, headers=headers, tablefmt="grid"))
+    return True
+
+
+def form_delete_order():
+    print("=========================================")
+    print("           DELETE EXIST ORDER            ")
+    print("=========================================")
+
+    # 1. Tampilkan semua daftar pesanan terlebih dahulu
+    ada_data = display_all_orders()
+
+    # Jika database kosong, langsung keluar dari form hapus
+    if not ada_data:
+        return
+
+    # 2. Minta input ID Pesanan yang mau dihapus setelah kasir melihat tabelnya
+    try:
+        id_pesanan = int(input("\nMasukkan ID Pesanan yang ingin dihapus: "))
+    except ValueError:
+        print("[Error] ID Pesanan harus berupa angka!")
+        return
+
+    # 3. Konfirmasi ulang demi keamanan data kasir
+    konfirmasi = (
+        input(f"Apakah Anda yakin ingin menghapus ID Pesanan {id_pesanan}? (y/n): ")
+        .strip()
+        .lower()
+    )
+
+    if konfirmasi == "y":
+        sukses = delete_order_by_id(id_pesanan)
+        if sukses:
+            print(
+                f"\n[Sukses] Data ID Pesanan {id_pesanan} beserta detail itemnya berhasil dihapus."
+            )
+    else:
+        print("\n[Batal] Penghapusan pesanan dibatalkan oleh pengguna.")
