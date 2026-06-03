@@ -3,20 +3,28 @@ from db import db, get_cursor
 
 def fetch_menu_by_id(menu_id):
     cursor = get_cursor()
-    query = "SELECT id, nama, harga, stock FROM menu WHERE id = %s"
-    cursor.execute(query, (menu_id,))
-    result = cursor.fetchone()
-    cursor.close()
-    return result
+    try:
+        query = "SELECT id, nama, harga, stock FROM menu WHERE id = %s"
+        cursor.execute(query, (menu_id,))
+        return cursor.fetchone()
+    except Exception as e:
+        print(f"\n[Database Error]: Gagal mengambil menu berdasarkan ID. {e}")
+        return None
+    finally:
+        cursor.close()
 
 
 def fetch_all_menus():
     cursor = get_cursor()
-    query = "SELECT id, nama, harga, stock FROM menu"
-    cursor.execute(query)
-    result = cursor.fetchall()
-    cursor.close()
-    return result
+    try:
+        query = "SELECT id, nama, harga, stock FROM menu"
+        cursor.execute(query)
+        return cursor.fetchall()
+    except Exception as e:
+        print(f"\n[Database Error]: Gagal mengambil semua data menu. {e}")
+        return []
+    finally:
+        cursor.close()
 
 
 def insert_menu(name, price, stock):
@@ -28,7 +36,7 @@ def insert_menu(name, price, stock):
         return True
     except Exception as error:
         db.rollback()
-        print(f"\n[Database Error]: {error}")
+        print(f"\n[Database Error]: Gagal menambah menu baru. {error}")
         return False
     finally:
         cursor.close()
@@ -47,7 +55,7 @@ def update_menu(menu_id, name, price, stock):
         return True
     except Exception as error:
         db.rollback()
-        print(f"\n[Database Error]: {error}")
+        print(f"\n[Database Error]: Gagal memperbarui data menu. {error}")
         return False
     finally:
         cursor.close()
