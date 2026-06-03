@@ -4,10 +4,10 @@ create table ulasan (
     rating INT NOT NULL,
     komentar TEXT NOT NULL,
 
-    constraint fk_ulasan_pesanan 
-        foreign key (id_pesanan) references pesanan(id) 
-        on delete cascade
-        on update cascade,
+    CONSTRAINT  fk_ulasan_pesanan 
+        FOREIGN  KEY (id_pesanan) REFERENCES  pesanan(id) 
+        ON DELETE cascade
+        ON UPDATE cascade,
 
     CONSTRAINT check_ulasan_rating 
             CHECK (rating >= 1 AND rating <= 5)
