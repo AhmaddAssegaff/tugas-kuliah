@@ -1,7 +1,7 @@
 import os
 
 from db import close_connection
-from tampilan import tampilkan_detail_pelanggan, tampilkan_pelanggan
+from tampilan import tampilkan_detail_pelanggan, tampilkan_kurir, tampilkan_pelanggan
 
 
 def clear_screen():
@@ -17,6 +17,7 @@ def menu():
         print("========================")
         print("1. Lihat Pelanggan")
         print("2. Detail Pesanan Pelanggan")
+        print("3. Lihat Kurir")
         print("0. Keluar")
 
         pilihan = input("\nPilih menu: ")
@@ -29,6 +30,11 @@ def menu():
         elif pilihan == "2":
             clear_screen()
             tampilkan_detail_pelanggan()
+            input("\nTekan Enter untuk kembali ke menu...")
+
+        elif pilihan == "3":
+            clear_screen()
+            tampilkan_kurir()
             input("\nTekan Enter untuk kembali ke menu...")
 
         elif pilihan == "0":

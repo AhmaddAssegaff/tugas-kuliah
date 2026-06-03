@@ -54,3 +54,24 @@ def ambil_pesanan_pelanggan(id_pelanggan):
     cursor.close()
 
     return result
+
+
+def ambil_kurir():
+    cursor = get_cursor()
+    q = """
+    SELECT 
+        id,
+        nama,
+        CASE
+            WHEN status_ketersediaan = 1 THEN 'Tersedia'
+            ELSE 'Tidak Tersedia'
+        END AS status_ketersediaan,
+        kendaraan
+    FROM kurir;
+    """
+
+    cursor.execute(q)
+    result = cursor.fetchall()
+    cursor.close()
+
+    return result

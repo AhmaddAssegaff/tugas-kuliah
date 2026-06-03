@@ -1,4 +1,4 @@
-from query import ambil_pelanggan, ambil_pesanan_pelanggan
+from query import ambil_kurir, ambil_pelanggan, ambil_pesanan_pelanggan
 from tabulate import tabulate
 
 
@@ -52,6 +52,24 @@ def tampilkan_detail_pelanggan():
                 "Rating",
                 "Komentar",
             ],
+            tablefmt="grid",
+        )
+    )
+
+
+def tampilkan_kurir():
+    kurir = ambil_kurir()
+
+    if not kurir:
+        print("\n Kurir idak ditemukan")
+        return
+
+    print("\nDAFTAR KURIR\n")
+
+    print(
+        tabulate(
+            kurir,
+            headers=["ID Kurir", "Nama", "Status ketersediaan", "Kendaraan"],
             tablefmt="grid",
         )
     )
