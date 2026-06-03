@@ -18,65 +18,96 @@ def pause():
     input("\nPress Enter to return...")
 
 
-def main_menu():
+def customer_menu():
     while True:
         clear_screen()
-
         print("==============================")
-        print("    SIMPLE CASHIER SYSTEM     ")
+        print("    CUSTOMER MANAGEMENT       ")
         print("==============================")
-        print("1. View Customers")
+        print("1. View All Customers")
         print("2. View Customer Order Details")
-        print("3. View Couriers")
-        print("4. Add New Courier")
-        print("5. Update Courier")
-        print("6. Add New Customer")
-        print("7. Update Customer")
-        print("0. Exit")
+        print("3. Add New Customer")
+        print("4. Update Customer Data")
+        print("0. Back to Main Menu")
 
-        choice = input("\nSelect menu: ").strip()
+        choice = input("\nSelect action: ").strip()
 
         if choice == "1":
             clear_screen()
             display_customers()
             pause()
-
         elif choice == "2":
             clear_screen()
             display_customer_order_details()
             pause()
-
         elif choice == "3":
-            clear_screen()
-            display_couriers()
-            pause()
-
-        elif choice == "4":
-            clear_screen()
-            form_add_courier()
-            pause()
-
-        elif choice == "5":
-            clear_screen()
-            form_update_courier()
-            pause()
-
-        elif choice == "6":
             clear_screen()
             form_add_customer()
             pause()
-
-        elif choice == "7":
+        elif choice == "4":
             clear_screen()
             form_update_customer()
             pause()
+        elif choice == "0":
+            break
+        else:
+            print("\nAction not available.")
+            pause()
 
+
+def courier_menu():
+    while True:
+        clear_screen()
+        print("==============================")
+        print("     COURIER MANAGEMENT       ")
+        print("==============================")
+        print("1. View All Couriers")
+        print("2. Add New Courier")
+        print("3. Update Courier Data")
+        print("0. Back to Main Menu")
+
+        choice = input("\nSelect action: ").strip()
+
+        if choice == "1":
+            clear_screen()
+            display_couriers()
+            pause()
+        elif choice == "2":
+            clear_screen()
+            form_add_courier()
+            pause()
+        elif choice == "3":
+            clear_screen()
+            form_update_courier()
+            pause()
+        elif choice == "0":
+            break
+        else:
+            print("\nAction not available.")
+            pause()
+
+
+def main_menu():
+    while True:
+        clear_screen()
+        print("==============================")
+        print("    SIMPLE CASHIER SYSTEM     ")
+        print("==============================")
+        print("1. Customer Management")
+        print("2. Courier Management")
+        print("0. Exit")
+
+        choice = input("\nSelect menu: ").strip()
+
+        if choice == "1":
+            customer_menu()
+        elif choice == "2":
+            courier_menu()
         elif choice == "0":
             clear_screen()
             close_connection()
             print("Thank you for using the system!")
             break
-
         else:
             print("\nMenu not available.")
             pause()
