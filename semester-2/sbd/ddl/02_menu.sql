@@ -2,5 +2,5 @@ CREATE TABLE menu (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nama VARCHAR(100) NOT NULL,
     harga INT NOT NULL,
-    stock INT NOT NULL,
+    stock INT NOT NULL
 );
