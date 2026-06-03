@@ -3,6 +3,7 @@ CREATE TABLE pengiriman (
     id_pesanan INT NOT NULL,
     id_kurir INT NOT NULL,
     pengiriman_selesai DATETIME,
+    status Enum("dikirim", "selesai dikirim") NOT NULL DEFAULT "dikirim",
 
     CONSTRAINT fk_pengiriman_pesanan 
         FOREIGN KEY (id_pesanan) REFERENCES pesanan(id) 
