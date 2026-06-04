@@ -4,7 +4,7 @@ CREATE TABLE pesanan (
     status_pesanan BOOLEAN NOT NULL DEFAULT FALSE,
     pesanan_dibuat DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     metode_pembayaran ENUM("CASH", "QRIS", "TRANSFER") NOT NULL,
-    total_harga BIGINT NOT NULL,
+    total_harga INT NOT NULL,
 
     CONSTRAINT fk_pesanan_pelanggan 
         FOREIGN KEY (id_pelanggan) REFERENCES pelanggan(id) 
