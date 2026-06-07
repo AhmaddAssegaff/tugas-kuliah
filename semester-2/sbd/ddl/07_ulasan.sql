@@ -1,10 +1,10 @@
 create table ulasan (
     id int auto_increment primary key,
-    id_pesanan INT NOT NULL,
+    id_pesanan INT NOT NULL UNIQUE,
     rating INT NOT NULL,
     komentar TEXT NOT NULL,
 
-    CONSTRAINT  fk_ulasan_pesanan 
+    CONSTRAINT fk_ulasan_pesanan 
         FOREIGN  KEY (id_pesanan) REFERENCES  pesanan(id) 
         ON DELETE cascade
         ON UPDATE cascade,
