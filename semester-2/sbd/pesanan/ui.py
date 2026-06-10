@@ -1,6 +1,11 @@
 from menu.ui import display_menus
 from pelanggan.ui import display_customers
-from pesanan.query import delete_order_by_id, fetch_all_orders, insert_customer_order
+from pesanan.query import (
+    delete_order_by_id,
+    fetch_all_orders,
+    insert_customer_order,
+    update_status_order,
+)
 from tabulate import tabulate
 
 
@@ -102,7 +107,6 @@ def form_delete_order():
     print("           DELETE EXIST ORDER            ")
     print("=========================================")
 
-    # 1. Tampilkan semua daftar pesanan terlebih dahulu
     ada_data = display_all_orders()
 
     # Jika database kosong, langsung keluar dari form hapus
@@ -131,3 +135,38 @@ def form_delete_order():
             )
     else:
         print("\n[Batal] Penghapusan pesanan dibatalkan oleh pengguna.")
+
+
+def form_update_status_order():
+    print("=========================================")
+    print("         UPDATE STATUS PESANAN           ")
+    print("=========================================")
+
+    ada_data = display_all_orders()
+
+    if not ada_data:
+        return
+
+    try:
+        id_pesanan = int(input("\nMasukkan ID Pesanan yang ingin ditandai selesai: "))
+    except ValueError:
+        print("[Error] ID Pesanan harus berupa angka!")
+        return
+
+    konfirmasi = (
+        input(f"Yakin ingin menyelesaikan pesanan ID {id_pesanan}? (y/n): ")
+        .strip()
+        .lower()
+    )
+
+    if konfirmasi == "y":
+        berhasil = update_status_order(id_pesanan)
+
+        if berhasil:
+            print(
+                f"\n[SUKSES] Status pesanan {id_pesanan} berhasil diubah menjadi selesai."
+            )
+        else:
+            print(f"\n[GAGAL] Pesanan tidak ditemukan atau sudah selesai sebelumnya.")
+    else:
+        print("\n[BATAL] Perubahan status dibatalkan.")

@@ -1,5 +1,26 @@
 from db import db, get_cursor
-from menu.query import decrease_menu_stock
+
+
+def decrease_menu_stock(id_menu, kuantitas):
+    cursor = get_cursor()
+    try:
+        query = """
+            UPDATE menu 
+            SET stock = stock - %s 
+            WHERE id = %s AND stock >= %s
+        """
+        cursor.execute(query, (kuantitas, id_menu, kuantitas))
+        db.commit()
+    except Exception as error:
+        print(f"\n[Database Error]: Gagal mengurangi stock. {error}")
+        return None
+    finally:
+        cursor.close()
+
+    if cursor.rowcount == 0:
+        raise Exception(
+            f"Stok untuk Menu ID {id_menu} tidak mencukupi atau menu tidak ditemukan!"
+        )
 
 
 def insert_customer_order(
@@ -9,7 +30,6 @@ def insert_customer_order(
     try:
         q_order = "INSERT INTO pesanan (id_pelanggan, metode_pembayaran, total_harga) VALUES (%s, %s, %s)"
         cursor.execute(q_order, (id_pelanggan, metode_pembayaran, total_harga))
-
         id_pesanan_baru = cursor.lastrowid
 
         vals_detail = []
@@ -23,16 +43,21 @@ def insert_customer_order(
                     item["harga_menu_saat_pesan"],
                 )
             )
-            decrease_menu_stock(item["id_menu"], item["kuantitas"])
 
         q_detail = """
             INSERT INTO detail_pesanan (id_pesanan, id_menu, kuantitas, sub_total, harga_menu_saat_pesan)
             VALUES (%s, %s, %s, %s, %s)
         """
         cursor.executemany(q_detail, vals_detail)
+        db.commit()
+
+        for item in list_detail_pesanan:
+            decrease_menu_stock(item["id_menu"], item["kuantitas"])
+
         return id_pesanan_baru
 
     except Exception as e:
+        db.rollback()
         print(f"\n[Error] Gagal menyimpan pesanan ke database: {e}")
         return None
     finally:
@@ -67,5 +92,26 @@ def fetch_all_orders():
     except Exception as e:
         print(f"\n[Database Error]: Gagal mengambil semua data order. {e}")
         return []
+    finally:
+        cursor.close()
+
+
+def update_status_order(id_pesanan):
+    cursor = get_cursor()
+    try:
+        query = """
+            UPDATE pesanan
+            SET status_pesanan = TRUE
+            WHERE id = %s
+        """
+        cursor.execute(query, (id_pesanan,))
+        db.commit()
+
+        return cursor.rowcount > 0
+    except Exception as e:
+        db.rollback()
+        print(f"\n[Database Error]: Gagal mengubah status pesanan. {e}")
+        return False
+
     finally:
         cursor.close()
