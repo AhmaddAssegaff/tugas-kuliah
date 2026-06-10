@@ -10,6 +10,7 @@ from pelanggan.ui import (
     form_update_customer,
 )
 from pesanan.ui import form_create_order, form_delete_order
+from ulasan.ui import form_add_review
 
 
 def clear_screen():
@@ -148,6 +149,28 @@ def order_menu():
             pause()
 
 
+def review_menu():
+    while True:
+        clear_screen()
+        print("===============================")
+        print("      REVIEW MANAGEMENT        ")
+        print("===============================")
+        print("1. Create New Review")
+        print("0. Back to Main Menu")
+
+        choice = input("\nSelect action: ").strip()
+
+        if choice == "1":
+            clear_screen()
+            form_add_review()
+            pause()
+        elif choice == "0":
+            break
+        else:
+            print("\nAction not available.")
+            pause()
+
+
 def main_menu():
     while True:
         clear_screen()
@@ -158,6 +181,7 @@ def main_menu():
         print("2. Courier Management")
         print("3. Food Menu Management")
         print("4. Order Management")
+        print("5. Review Management")
         print("0. Exit")
 
         choice = input("\nSelect menu: ").strip()
@@ -170,6 +194,8 @@ def main_menu():
             food_menu()
         elif choice == "4":
             order_menu()
+        elif choice == "5":
+            review_menu()
         elif choice == "0":
             clear_screen()
             close_connection()
