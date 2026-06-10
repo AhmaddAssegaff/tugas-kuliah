@@ -15,7 +15,7 @@ from pengiriman.ui import (
     form_finish_delivery,
 )
 from pesanan.ui import form_create_order, form_delete_order, form_update_status_order
-from ulasan.ui import form_add_review
+from ulasan.ui import display_all_review, form_add_review
 
 
 def clear_screen():
@@ -166,6 +166,7 @@ def review_menu():
         print("      REVIEW MANAGEMENT        ")
         print("===============================")
         print("1. Create New Review")
+        print("2. View All Review")
         print("0. Back to Main Menu")
 
         choice = input("\nSelect action: ").strip()
@@ -173,6 +174,10 @@ def review_menu():
         if choice == "1":
             clear_screen()
             form_add_review()
+            pause()
+        elif choice == "2":
+            clear_screen()
+            display_all_review()
             pause()
         elif choice == "0":
             break

@@ -1,5 +1,4 @@
 from tabulate import tabulate
-
 from ulasan.query import fetch_completed_orders_without_review, insert_review
 
 
@@ -23,12 +22,12 @@ def form_add_review():
         if rating < 1 or rating > 5:
             print("[Error] Rating harus antara 1 sampai 5!")
             return
-        
+
         komentar = input("Masukkan Komentar: ").strip()
         if not komentar:
             print("[Error] Komentar tidak boleh kosong!")
             return
-            
+
     except ValueError:
         print("[Error] Input ID Pesanan dan Rating harus berupa angka!")
         return
@@ -37,4 +36,20 @@ def form_add_review():
     if success:
         print(f"\n[Sukses] Berhasil menambahkan ulasan untuk ID Pesanan {id_pesanan}.")
     else:
-        print(f"\n[Gagal] Gagal menambahkan ulasan. Pastikan ID Pesanan benar dan sudah selesai.")
+        print(
+            f"\n[Gagal] Gagal menambahkan ulasan. Pastikan ID Pesanan benar dan sudah selesai."
+        )
+
+
+def display_all_review():
+    print("=========================================")
+    print("            SEMUA ULASAN                 ")
+    print("=========================================")
+    from ulasan.query import fetch_all_reviews
+
+    reviews = fetch_all_reviews()
+    if not reviews:
+        print("\n[Info] Belum ada ulasan.")
+        return
+    headers = ["ID Ulasan", "ID Pesanan", "Nama Pelanggan", "Rating", "Komentar"]
+    print(tabulate(reviews, headers=headers, tablefmt="grid"))

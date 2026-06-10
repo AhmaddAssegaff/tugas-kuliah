@@ -42,3 +42,26 @@ def fetch_completed_orders_without_review():
         return []
     finally:
         cursor.close()
+
+
+def fetch_all_reviews():
+    cursor = get_cursor()
+    try:
+        query = """
+            SELECT 
+                u.id,
+                u.id_pesanan,
+                pl.nama AS nama_pelanggan,
+                u.rating,
+                u.komentar
+            FROM ulasan u
+            JOIN pesanan p ON p.id = u.id_pesanan
+            JOIN pelanggan pl ON pl.id = p.id_pelanggan
+        """
+        cursor.execute(query)
+        return cursor.fetchall()
+    except Exception as e:
+        print(f"\n[Database Error]: {e}")
+        return []
+    finally:
+        cursor.close()
