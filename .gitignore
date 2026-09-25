@@ -2,3 +2,4 @@ __pycache__
 
 semester-1/pemvis/alien-game/*
 .env
+*.class
