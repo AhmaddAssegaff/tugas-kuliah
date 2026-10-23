@@ -17,6 +17,6 @@ public class Hitung {
     Hitung hitung = new Hitung();
 
     hitung.tambah(5, 3);
-    hitung.tambah(5.5, 5.3);
+    hitung.tambah(5.5, 3.2);
   }
 }

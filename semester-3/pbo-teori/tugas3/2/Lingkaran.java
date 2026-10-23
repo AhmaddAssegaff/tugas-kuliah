@@ -2,7 +2,8 @@ public class Lingkaran {
   int jariJari;
 
   double hitungLuas() {
-    return 3.14 * this.jariJari * this.jariJari;
+    double luas = 3.14 * this.jariJari * this.jariJari;
+    return luas;
   }
 
   public static void main(String[] args) {
