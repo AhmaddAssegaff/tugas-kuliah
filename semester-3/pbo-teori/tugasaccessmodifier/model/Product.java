@@ -1,4 +1,4 @@
-package TugasAccessModifier.model;
+package tugasaccessmodifier.model;
 
 public class Product {
   String name;

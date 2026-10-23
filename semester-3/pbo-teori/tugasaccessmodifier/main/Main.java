@@ -1,7 +1,7 @@
-package TugasAccessModifier.main;
+package tugasaccessmodifier.main;
 
-import TugasAccessModifier.model.Customer;
-import TugasAccessModifier.model.Product;
+import tugasaccessmodifier.model.Customer;
+import tugasaccessmodifier.model.Product;
 
 public class Main {
     public static void main(String[] args) {
